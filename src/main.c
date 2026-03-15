@@ -1,6 +1,7 @@
 #include <stdio.h>
-#include <unistd.h>
 #include <SDL.h>
+
+#include "render.h"
 
 int main(int argc, char* argv[])
 {
@@ -32,12 +33,33 @@ int main(int argc, char* argv[])
         return 1;
     }
 
-    // Draw code here
-    SDL_FillRect(winSurface, NULL, SDL_MapRGB(winSurface->format, 255, 0, 255));
+    bool game_running = true;
 
-    SDL_UpdateWindowSurface(window);
+    // Game loop
+    while (game_running)
+    {
+        SDL_Event event;
+        while (SDL_PollEvent(&event))
+        {
+            switch (event.type)
+            {
+                case SDL_QUIT:
+                    game_running = false;
+                    break;
+                case SDL_KEYDOWN:
+                    if (event.key.keysym.sym == SDLK_ESCAPE)
+                    {
+                        game_running = false;
+                        break;
+                    }
+            }
+        }
 
-    sleep(10);
+        // Draw code here
+        draw_background(winSurface, (struct SDL_Color){255, 0, 0}, (struct SDL_Color){0, 255, 0}, (struct SDL_Color){0, 0, 255});
+
+        SDL_UpdateWindowSurface(window);
+    }
 
     SDL_DestroyWindow(window);
 
