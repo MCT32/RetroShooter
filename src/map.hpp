@@ -1,3 +1,5 @@
+#pragma once
+
 struct Map {
 	unsigned int w;
 	unsigned int h;

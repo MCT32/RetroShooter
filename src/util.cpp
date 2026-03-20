@@ -1,4 +1,4 @@
-#include "util.h"
+#include "util.hpp"
 
 SDL_Color lerp_color(double factor, SDL_Color color1, SDL_Color color2)
 {
@@ -21,19 +21,19 @@ SDL_Color map_color(double factor, double min, double max, SDL_Color color1, SDL
 	return lerp_color(real_factor, color1, color2);
 }
 
-double raycast(struct Map* map, vec2 start, vec2 dir, double maxdist)
+double raycast(const struct Map* map, Vec2 start, Vec2 dir, double maxdist)
 {
 	// Distance ray has to travel to cross a cell in each direction
-	vec2 delta = {
+	Vec2 delta = Vec2(
 		sqrt(1 + (dir.y / dir.x) * (dir.y / dir.x)),
 		sqrt(1 + (dir.x / dir.y) * (dir.x / dir.y))
-	};
+	);
 
 	// Currently checked cell
-	ivec2 mappos = vec2_to_ivec2(start);
+	IVec2 mappos = start.toIVec2();
 
-	vec2 length;	// Distance traveled to edge of cell in each direction
-	ivec2 step;		// Direction to step cells
+	Vec2 length;	// Distance traveled to edge of cell in each direction
+	IVec2 step;	// Direction to step cells
 
 	if (dir.x < 0)
 	{
@@ -79,7 +79,7 @@ double raycast(struct Map* map, vec2 start, vec2 dir, double maxdist)
 		}
 	}
 
-	vec2 intercept;
+	Vec2 intercept;
 	if (hit)
 	{
 		intercept.x = start.x + dir.x * dist;

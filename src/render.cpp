@@ -1,4 +1,4 @@
-#include "render.h"
+#include "render.hpp"
 
 void set_pixel(SDL_Surface* surface, unsigned int x, unsigned int y, SDL_Color color)
 {
@@ -63,13 +63,13 @@ void draw_background(SDL_Surface* surface, SDL_Color floor, SDL_Color horizon, S
 	}
 }
 
-void draw_walls(SDL_Surface* surface, SDL_Color color, struct Map* map, struct Player* player)
+void draw_walls(SDL_Surface* surface, SDL_Color color, const struct Map* map, struct Player* player)
 {
 	double screenratio = (double)surface->w / (double)surface->h;
 
 	for (int i = 0; i < surface->w; i++)
 	{
-		vec2 dir;
+		Vec2 dir;
 		dir.x = ((((double)i / (double)surface->w) * 2.0) - 1.0);
 
 		double length = sqrt((dir.x * dir.x) + 1);
@@ -77,7 +77,7 @@ void draw_walls(SDL_Surface* surface, SDL_Color color, struct Map* map, struct P
 		dir.x = dir.x / length;
 		dir.y = 1.0 / length;
 
-		dir = rotate_vec2(dir, player->angle);
+		dir = dir.rotate(player->angle);
 
 		double dist = raycast(map, player->pos, dir, 20.0);
 		double dist_corrected = dist / length;

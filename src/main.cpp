@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <SDL.h>
 
-#include "render.h"
-#include "map.h"
-#include "player.h"
+#include "render.hpp"
+#include "map.hpp"
+#include "player.hpp"
 
 const struct Map map = {
 	7,
@@ -50,7 +50,7 @@ int main(int argc, char* argv[])
 	}
 
 	bool game_running = true;
-	struct Player player = {3.5, 3.5, 0.0};
+	Player player = Player(Vec2(3.5, 3.5), 0.0);
 
 	// Game loop
 	while (game_running)
