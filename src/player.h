@@ -4,8 +4,8 @@
 #include "vec.h"
 
 struct Player {
-    vec2 pos;
-    double angle;
+	vec2 pos;
+	double angle;
 };
 
 #endif

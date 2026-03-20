@@ -1,5 +1,5 @@
 struct Map {
-    unsigned int w;
-    unsigned int h;
-    unsigned int walls[];
+	unsigned int w;
+	unsigned int h;
+	unsigned int walls[];
 };

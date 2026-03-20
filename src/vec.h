@@ -4,13 +4,13 @@
 #include <math.h>
 
 typedef struct vec2 {
-    double x;
-    double y;
+	double x;
+	double y;
 } vec2;
 
 typedef struct ivec2 {
-    int x;
-    int y;
+	int x;
+	int y;
 } ivec2;
 
 ivec2 vec2_to_ivec2(vec2 vector);
