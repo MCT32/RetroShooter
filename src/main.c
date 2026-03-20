@@ -2,6 +2,22 @@
 #include <SDL.h>
 
 #include "render.h"
+#include "map.h"
+#include "player.h"
+
+const struct Map map = {
+    7,
+    7,
+    {
+        1, 1, 1, 1, 1, 1, 1,
+        1, 1, 0, 0, 0, 1, 1,
+        1, 0, 0, 0, 0, 0, 1,
+        1, 0, 0, 0, 0, 0, 1,
+        1, 0, 0, 0, 0, 0, 1,
+        1, 0, 0, 0, 0, 0, 1,
+        1, 1, 1, 1, 1, 1, 1
+    }
+};
 
 int main(int argc, char* argv[])
 {
@@ -34,6 +50,7 @@ int main(int argc, char* argv[])
     }
 
     bool game_running = true;
+    struct Player player = {3.5, 3.5, 0.0};
 
     // Game loop
     while (game_running)
@@ -47,16 +64,19 @@ int main(int argc, char* argv[])
                     game_running = false;
                     break;
                 case SDL_KEYDOWN:
-                    if (event.key.keysym.sym == SDLK_ESCAPE)
+                    switch (event.key.keysym.sym)
                     {
-                        game_running = false;
-                        break;
+                        case SDLK_ESCAPE:
+                            game_running = false;
+                            break;
                     }
             }
         }
 
         // Draw code here
         draw_background(winSurface, (struct SDL_Color){255, 0, 0}, (struct SDL_Color){0, 255, 0}, (struct SDL_Color){0, 0, 255});
+
+        draw_walls(winSurface, (struct SDL_Color){255, 255, 255}, &map, &player);
 
         SDL_UpdateWindowSurface(window);
     }

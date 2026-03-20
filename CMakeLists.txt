@@ -4,7 +4,7 @@ project(RetroShooter)
 
 add_subdirectory(vendored/SDL EXCLUDE_FROM_ALL)
 
-add_executable(RetroShooter src/main.c src/render.c src/util.c)
+add_executable(RetroShooter src/main.c src/render.c src/util.c src/vec.c)
 
 target_link_libraries(RetroShooter PRIVATE SDL2::SDL2)
 target_link_libraries(RetroShooter PRIVATE m)
