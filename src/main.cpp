@@ -4,6 +4,7 @@
 #include "render.hpp"
 #include "map.hpp"
 #include "player.hpp"
+#include "defines.hpp"
 
 const struct Map map = {
 	7,
@@ -50,7 +51,10 @@ int main(int argc, char* argv[])
 	}
 
 	bool game_running = true;
-	Player player = Player(Vec2(3.5, 3.5), 0.0);
+
+	Actor* edict[MAX_ENTITIES];
+	Player* player = new Player(Vec2(3.5, 3.5), 0.0);
+	add_to_edict(edict, player);
 
 	// Game loop
 	while (game_running)
