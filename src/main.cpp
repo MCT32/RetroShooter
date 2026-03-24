@@ -80,7 +80,7 @@ int main(int argc, char* argv[])
 		// Draw code here
 		draw_background(winSurface, (struct SDL_Color){255, 0, 0}, (struct SDL_Color){0, 255, 0}, (struct SDL_Color){0, 0, 255});
 
-		draw_walls(winSurface, (struct SDL_Color){255, 255, 255}, &map, &player);
+		draw_walls(winSurface, (struct SDL_Color){255, 255, 255}, &map, player);
 
 		SDL_UpdateWindowSurface(window);
 	}

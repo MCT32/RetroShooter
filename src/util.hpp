@@ -12,4 +12,4 @@ SDL_Color map_color(double factor, double min, double max, SDL_Color color1, SDL
 
 double raycast(const struct Map* map, Vec2 start, Vec2 dir, double maxdist);
 
-unsigned int add_to_edict(*Actor actor);
+unsigned int add_to_edict(Actor* edict[], Actor* actor);

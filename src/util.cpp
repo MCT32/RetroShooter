@@ -90,14 +90,14 @@ double raycast(const struct Map* map, Vec2 start, Vec2 dir, double maxdist)
 }
 
 // Returns entity index
-unsigned int add_to_edict(*Actor[] edict, *Actor actor)
+unsigned int add_to_edict(Actor* edict[], Actor* actor)
 {
-	for (int i; i < MAX_ENTITIES; i++, edict++)
+	for (int i; i < MAX_ENTITIES; i++)
 	{
 		// Check if slot is empty (NULL)
-		if (!edict)
+		if (!edict[i])
 		{
-			edict = actor;
+			edict[i] = actor;
 			return i;
 		}
 	}
